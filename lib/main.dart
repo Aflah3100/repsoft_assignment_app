@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Repsoft Assignment App',
       theme: ThemeData(
       
-        colorScheme: ColorScheme.fromSeed(seedColor: Color(0xffFF6B17)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffFF6B17)),
         useMaterial3: true,
       ),
       home: SignInScreen(),
