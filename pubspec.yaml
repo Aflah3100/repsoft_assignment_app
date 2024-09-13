@@ -29,6 +29,8 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.6
+  dashed_line: ^0.1.0+3
+  device_preview: ^1.2.0
   flutter:
     sdk: flutter
   google_fonts: ^6.2.1

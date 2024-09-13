@@ -1,9 +1,15 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:repsoft_assignment_app/screens/select_courier_screen/select_courier_screen.dart';
 import 'package:repsoft_assignment_app/screens/sign_in_screen/sign_in_screen.dart';
-import 'package:repsoft_assignment_app/screens/sign_up_screen/sign_up_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(DevicePreview(
+    enabled: false,
+    builder: (context) {
+      return const MyApp();
+    }
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,12 +19,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: DevicePreview.appBuilder,
       title: 'Repsoft Assignment App',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffFF6B17)),
         useMaterial3: true,
       ),
-      home: SignInScreen(),
+      home: SelectCourierScreen(),
     );
   }
 }
