@@ -1,5 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
 import 'package:repsoft_assignment_app/constants/assets.dart';
+import 'package:repsoft_assignment_app/firebase/firebase_auth/firebase_auth_functions.dart';
+import 'package:repsoft_assignment_app/models/user_model.dart';
+import 'package:repsoft_assignment_app/providers/auth_screen_provider.dart';
+import 'package:repsoft_assignment_app/screens/select_courier_screen/select_courier_screen.dart';
 import 'package:repsoft_assignment_app/screens/sign_in_screen/widgets/sign_in_widgets.dart';
 import 'package:repsoft_assignment_app/screens/sign_up_screen/sign_up_screen.dart';
 import 'package:repsoft_assignment_app/utils/app_colors.dart';
@@ -128,8 +137,52 @@ class SignInScreen extends StatelessWidget {
                         ),
 
                         //Authentication Button
-                        AuthenticationButton(
-                            label: 'Sign In', onTap: () {}, isLoading: false),
+                        Selector<AuthScreenProvider, bool>(
+                            selector: (context, provider) =>
+                                provider.getLadingStatus(),
+                            builder: (contex, isLoading, child) {
+                              return AuthenticationButton(
+                                  label: 'Sign In',
+                                  onTap: () async {
+                                    if (isLoading) return;
+                                    context
+                                        .read<AuthScreenProvider>()
+                                        .setLoadingStatus(true);
+                                    try {
+                                      if (verifySigninDetails()) {
+                                        final authResult =
+                                            await FirebaseAuthFunctions
+                                                .instance
+                                                .authenticateUserUsingEmail(
+                                                    emailId:
+                                                        emailController.text,
+                                                    password: passwordController
+                                                        .text);
+                                        if (authResult is UserModel) {
+                                          //Sign-in-sucess
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (_) =>
+                                                      const SelectCourierScreen()));
+                                        } else if (authResult
+                                            is FirebaseAuthException) {
+                                          showErrorToast(authResult.message ??
+                                              'Error Signing In');
+                                        } else if (authResult is String) {
+                                          showErrorToast(authResult);
+                                        }
+                                      }
+                                    } catch (e) {
+                                      showErrorToast('Error Signing In');
+                                    } finally {
+                                      context
+                                          .read<AuthScreenProvider>()
+                                          .setLoadingStatus(false);
+                                    }
+                                  },
+                                  isLoading: isLoading);
+                            }),
 
                         const SizedBox(
                           height: 10,
@@ -159,5 +212,36 @@ class SignInScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool verifySigninDetails() {
+    if (emailController.text.isEmpty) {
+      showErrorToast('Email id can\'t be empty');
+      return false;
+    } else if (!isValidEmail(emailController.text)) {
+      showErrorToast('Enter valid email address');
+      return false;
+    } else if (passwordController.text.isEmpty) {
+      showErrorToast('Please enter your password');
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  void showErrorToast(String message) {
+    Fluttertoast.showToast(
+        msg: message,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        gravity: ToastGravity.BOTTOM);
+  }
+
+  bool isValidEmail(String email) {
+    final RegExp emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+
+    return emailRegex.hasMatch(email);
   }
 }

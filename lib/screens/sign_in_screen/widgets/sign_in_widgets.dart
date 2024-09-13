@@ -67,6 +67,7 @@ class AuthenticationTextField extends StatelessWidget {
           color: AppColors.lightGreenColor),
       child: Center(
         child: TextFormField(
+          controller: controller,
           keyboardType: keyboardType,
           obscureText: obscureText,
           decoration: InputDecoration(
