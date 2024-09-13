@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:repsoft_assignment_app/screens/sign_in_screen/sign_in_screen.dart';
+import 'package:repsoft_assignment_app/screens/sign_up_screen/sign_up_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,11 +15,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Repsoft Assignment App',
       theme: ThemeData(
-      
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xffFF6B17)),
         useMaterial3: true,
       ),
-      home: SignInScreen(),
+      home: SignUpScreen(),
     );
   }
 }

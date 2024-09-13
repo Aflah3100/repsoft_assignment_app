@@ -8,4 +8,5 @@ class AppColors {
   static const darkGreenIconColor = Color(0xff00C50A);
   static const lightGreenColor = Color(0xffE7FFE8);
   static const lightOrangeColor = Color(0xffFFA15B);
+  static const circleAvatatColor=Color(0xffFFEFEA);
 }

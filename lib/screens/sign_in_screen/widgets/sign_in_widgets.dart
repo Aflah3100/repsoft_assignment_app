@@ -111,9 +111,10 @@ class GradientText extends StatelessWidget {
 }
 
 class CheckBoxWidget extends StatefulWidget {
-  const CheckBoxWidget({super.key, required this.label});
+  const CheckBoxWidget({super.key, required this.label, this.labelStyle});
 
   final String label;
+  final TextStyle? labelStyle;
 
   @override
   _CheckBoxWidgetState createState() => _CheckBoxWidgetState();
@@ -133,16 +134,15 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
             value: isChecked,
             onChanged: (bool? value) {
               setState(() {
-                isChecked = value ?? false; 
+                isChecked = value ?? false;
               });
             },
           ),
-          Text(
-            widget.label,
-            style: AppTextStyles.ttChocolateTextStyle(
-                color: AppColors.lightGreyTextColor,
-                fontWeight: FontWeight.w500,
-                fontSize: 15),
+          Flexible(
+            child: Text(
+              widget.label,
+              style: widget.labelStyle,
+            ),
           ),
         ],
       ),

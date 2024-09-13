@@ -104,8 +104,12 @@ class SignInScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CheckBoxWidget(
+                            CheckBoxWidget(
                               label: 'Remember me',
+                              labelStyle: AppTextStyles.ttChocolateTextStyle(
+                                  color: AppColors.lightGreyTextColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15),
                             ),
                             TextButton(
                                 onPressed: () {},
