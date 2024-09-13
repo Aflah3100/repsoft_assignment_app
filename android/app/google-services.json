@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "404568758761",
+    "project_id": "repsoft-assignment-app",
+    "storage_bucket": "repsoft-assignment-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404568758761:android:f1ec744b7cb339aaced378",
+        "android_client_info": {
+          "package_name": "com.example.repsoft_assignment_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPjg8XU8FEDZImrQBp0WuKdzv5moPpvZE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
