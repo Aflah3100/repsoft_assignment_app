@@ -105,6 +105,7 @@ class SignInScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CheckBoxWidget(
+                              flex: false,
                               label: 'Remember me',
                               labelStyle: AppTextStyles.ttChocolateTextStyle(
                                   color: AppColors.lightGreyTextColor,
@@ -136,7 +137,7 @@ class SignInScreen extends StatelessWidget {
 
                         TextButton(
                             onPressed: () {
-                              Navigator.push(
+                              Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
                                       builder: (_) => SignUpScreen()));

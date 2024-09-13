@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:repsoft_assignment_app/constants/assets.dart';
+import 'package:repsoft_assignment_app/screens/sign_in_screen/sign_in_screen.dart';
 import 'package:repsoft_assignment_app/screens/sign_in_screen/widgets/sign_in_widgets.dart';
 import 'package:repsoft_assignment_app/utils/app_colors.dart';
 import 'package:repsoft_assignment_app/utils/app_text_styles.dart';
@@ -92,6 +93,7 @@ class SignUpScreen extends StatelessWidget {
                           obscureText: true),
                       const SizedBox(height: 30),
                       CheckBoxWidget(
+                        flex: true,
                         label:
                             'By creating an account you agree to our terms of service and privacy policy',
                         labelStyle: AppTextStyles.poppinsTextStyle(
@@ -114,7 +116,12 @@ class SignUpScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w400),
                           ),
                           GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => SignInScreen()));
+                            },
                             child: Text(
                               'Sign In',
                               style: AppTextStyles.poppinsTextStyle(

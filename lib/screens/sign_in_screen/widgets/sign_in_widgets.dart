@@ -111,10 +111,11 @@ class GradientText extends StatelessWidget {
 }
 
 class CheckBoxWidget extends StatefulWidget {
-  const CheckBoxWidget({super.key, required this.label, this.labelStyle});
+  CheckBoxWidget({super.key, required this.label, this.labelStyle, required this.flex});
 
   final String label;
   final TextStyle? labelStyle;
+  final bool flex;
 
   @override
   _CheckBoxWidgetState createState() => _CheckBoxWidgetState();
@@ -138,12 +139,16 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
               });
             },
           ),
-          Flexible(
-            child: Text(
-              widget.label,
-              style: widget.labelStyle,
-            ),
-          ),
+          (!widget.flex)
+              ? Text(
+                  widget.label,
+                  style: widget.labelStyle,
+                )
+              : Flexible(
+                  child: Text(
+                  widget.label,
+                  style: widget.labelStyle,
+                )),
         ],
       ),
     );
