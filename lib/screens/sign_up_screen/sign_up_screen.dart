@@ -30,15 +30,17 @@ class SignUpScreen extends StatelessWidget {
       ),
       body: SafeArea(
           child: Container(
+        margin: const EdgeInsets.only(top: 20),
         padding: const EdgeInsets.only(left: 20, right: 30, bottom: 50),
         child: Material(
           borderRadius: BorderRadius.circular(25),
           color: Colors.white,
           elevation: 10,
           child: Container(
+            margin: const EdgeInsets.all(20),
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(25)),
-            padding: const EdgeInsets.all(20),
+            // padding: const EdgeInsets.all(10),
             width: double.maxFinite,
             height: double.maxFinite,
             child: SingleChildScrollView(
